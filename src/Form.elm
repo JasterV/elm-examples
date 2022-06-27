@@ -82,6 +82,13 @@ viewInput t p v toMsg =
 -- Validation components
 
 
+type PasswordValidation
+    = Valid
+    | TooShort
+    | MissingCharacters
+    | NoMatch
+
+
 containsUpperCase : String -> Bool
 containsUpperCase word =
     String.any isUpper word
@@ -97,26 +104,37 @@ containsNumeric word =
     String.any isDigit word
 
 
-validatePassword : String -> String -> ( Bool, String )
+validatePassword : String -> String -> PasswordValidation
 validatePassword password passwordAgain =
     if password /= passwordAgain then
-        ( False, "Passwords do not match!" )
+        NoMatch
 
     else if String.length password < 8 then
-        ( False, "Password too short!" )
+        TooShort
 
     else if not (containsLowerCase password && containsNumeric password && containsUpperCase password) then
-        ( False, "Password must contain at least 1 Upper case character, 1 lower case and 1 numeric character" )
+        MissingCharacters
 
     else
-        ( True, "Ok!" )
+        Valid
+
+
+msgBox : String -> String -> Html msg
+msgBox color msg =
+    div [ style "color" color ] [ text msg ]
 
 
 viewValidation : Model -> Html msg
 viewValidation model =
     case validatePassword model.password model.passwordAgain of
-        ( False, msg ) ->
-            div [ style "color" "red" ] [ text msg ]
+        NoMatch ->
+            msgBox "red" "Passwords don't match!"
 
-        ( True, msg ) ->
-            div [ style "color" "green" ] [ text msg ]
+        MissingCharacters ->
+            msgBox "red" "Password must contain at least 1 Upper case character, 1 lower case and 1 numeric character"
+
+        TooShort ->
+            msgBox "red" "Password too short"
+
+        Valid ->
+            msgBox "green" "Ok!"
