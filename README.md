@@ -18,7 +18,7 @@ It involves cool stuff like env variables & http commands and I want to add some
 
 ### Setup
 
-Copy the `Env.elm.example` to `src/Env.elm` and add the required variables:
+Copy the `Env.example.elm` to `src/Env.elm` and add the required variables:
 
 * Api base URL: I'm using a free [weather API](https://www.weatherapi.com/), sign up & get the API credentials.
 * API key: Once you have your account, copy the API key you will find on your dashboard.
