@@ -25,5 +25,5 @@ Copy the `Env.example.elm` to `src/Env.elm` and add the required variables:
 
 ## Resources
 
-+ [Install Elm](https://guide.elm-lang.org/install/elm.html)
-+ [Elm guide](https://guide.elm-lang.org/)
+* [Install Elm](https://guide.elm-lang.org/install/elm.html)
+* [Elm guide](https://guide.elm-lang.org/)
