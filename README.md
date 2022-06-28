@@ -1,4 +1,4 @@
-# Elm playground
+# Elm examples
 
 This is my first project with Elm. Here I've added the basic examples built following the Elm guide.
 
